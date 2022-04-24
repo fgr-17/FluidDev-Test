@@ -2,7 +2,6 @@ set(TEST_NAME test_suite)
 
 set(LIB_DIR lib)
 set(FAKEIT_DIR FakeIt)
-set(CATCH2_DIR Catch2)
 
 include_directories(
   ${CMAKE_SOURCE_DIR}/${LIB_DIR}/${FAKEIT_DIR}
@@ -10,6 +9,8 @@ include_directories(
   
 set(Sources 
   main_test.cpp
+  ringbuffer_test.cpp
+  ringcounter_test.cpp
 )
 
 ## Testing 

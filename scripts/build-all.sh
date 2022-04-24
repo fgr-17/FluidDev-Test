@@ -10,10 +10,17 @@ SCRIPTS_DIR=./scripts
 
 if [ $# == 1 ]; then
     if [ $1 == "clean" ]; then
+
         echo "Deleting output files ..."
         rm -rf ${OUTPUT_DIR}
         cd ${SOURCE_DIR}
         make clean
+        exit 0
+
+    else [ $1 == "doc" ];
+        echo -e '\nGenerating the docs ...'
+        cd ${cwd}
+        doxygen Doxyfile
         exit 0
     fi
 fi
@@ -31,6 +38,11 @@ cd ${OUTPUT_DIR}
 cmake ../
 make
 
-echo -e '\nGenerating the docs ...'
-cd ${cwd}
-doxygen Doxyfile
+# if the building process run flawlessly, run the tests
+if [ $? == 0 ]; then
+    echo -e "\nRunning unit tests ..."
+    cd ${cwd}
+    cd ${OUTPUT_DIR}
+    cd ${TEST_DIR}
+    ./test_suite
+fi

@@ -9,5 +9,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON CACHE BOOL "is C++ stndard a requirement")
 set(CMAKE_CXX_EXTENSIONS OFF CACHE BOOL "enable/disable compiler specific extensions")
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
+
+set(SRC_DIR src)
+
+include_directories(
+  ${CMAKE_SOURCE_DIR}/${SRC_DIR}/ringbuffer
+)
+
+
 add_subdirectory(src)
 add_subdirectory(test)
