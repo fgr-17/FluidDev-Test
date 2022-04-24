@@ -61,8 +61,22 @@ The easiest way to set up the container is using the VSC Docker Extension as a [
 
 - Usage: Open the current repository using the Dev Container VSC extension, chosing "Open Folder inside container" . The first time, it may take several minutes to build the container.
 
-# Programming Test Detail:
 
+## Building the sources:
+
+This project is based on cmake. In order to simplify the process, a script called <build-all.sh> is provided. It's a bash script, so it can be run inside the container, or on a Unix-macOS environment.
+
+To compile natively on Windows, please open a cmd.exe or PowerShell terminal, cd into the project folder and run:
+
+```
+mkdir -p build
+cd build
+cmake ..\
+
+```
+
+
+# Programming Test Detail:
 
 **Background:**
 
