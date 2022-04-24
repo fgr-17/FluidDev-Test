@@ -1,4 +1,7 @@
 #!/bin/bash
+
+cd ..
+
 cwd=$(pwd)
 OUTPUT_DIR=build
 SOURCE_DIR=./

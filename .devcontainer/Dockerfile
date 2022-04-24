@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM debian:jessie-slim
+FROM debian:bullseye-slim
 
 RUN apt-get update
 
