@@ -64,7 +64,7 @@ The easiest way to set up the container is using the VSC Docker Extension as a [
 
 ## Building the sources:
 
-This project is based on cmake. In order to simplify the process, a script called <build-all.sh> is provided. It's a bash script, so it can be run inside the container, or on a Unix-macOS environment.
+This project is based on cmake. In order to simplify the process, a script called <build-all.sh> is provided. It's a bash script, so it can be run inside the container, or on a Unix-macOS environment. This script will generate all the building files and the docs (based on doxygen).
 
 To compile natively on Windows, please open a cmd.exe or PowerShell terminal, cd into the project folder and run:
 
@@ -79,6 +79,8 @@ The executable files can be found at:
 
 - app: build/src/fluid_dev
 - test suite: build/test/test_suite
+
+
 
 
 # Programming Test Detail:
