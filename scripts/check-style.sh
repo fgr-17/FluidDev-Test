@@ -8,5 +8,3 @@ STYLE=Google
 
 find ${SOURCE_DIR}  -iname *.h -o -iname *.cpp | xargs clang-format --style=${STYLE} -i 
 find ${TEST_DIR}  -iname *.h -o -iname *.cpp | xargs clang-format --style=${STYLE} -i
-
-return 1

@@ -6,6 +6,7 @@ cwd=$(pwd)
 OUTPUT_DIR=build
 SOURCE_DIR=./
 TEST_DIR=./test
+SCRIPTS_DIR=./scripts
 
 if [ $# == 1 ]; then
     if [ $1 == "clean" ]; then
@@ -16,6 +17,12 @@ if [ $# == 1 ]; then
         exit 0
     fi
 fi
+
+echo -e "\nChecking code style"
+cd ${cwd}
+cd ${SCRIPTS_DIR}
+bash check-style.sh
+
 
 echo -e '\nBuilding the project ...'
 cd ${cwd}
