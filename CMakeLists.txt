@@ -1,0 +1,13 @@
+cmake_minimum_required(VERSION 3.18)
+
+project(FLUID_DEV)
+
+### C++
+enable_language(CXX)
+set(CMAKE_CXX_STANDARD 17 CACHE STRING "C++ standard required for build")
+set(CMAKE_CXX_STANDARD_REQUIRED ON CACHE BOOL "is C++ stndard a requirement")
+set(CMAKE_CXX_EXTENSIONS OFF CACHE BOOL "enable/disable compiler specific extensions")
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
+add_subdirectory(src)
+add_subdirectory(test)
