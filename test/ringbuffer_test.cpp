@@ -1,8 +1,14 @@
 #include <catch2/catch_test_macros.hpp>
 #include <ringbuffer.hpp>
 
-TEST_CASE("rb constructor", "[basic]") {
-  ringbuffer<int, 5> rb1();
+TEST_CASE("rb constructor", "[ringbuffer]") {
+  ringbuffer<int, 5> rb{};
 
-  REQUIRE(1 == 1);
+  int tmp;
+
+  REQUIRE(rb.is_empty());
+
+  REQUIRE(rb.write(22) == 0);
+  //   REQUIRE(rb.read(tmp) == 0);
+  //   REQUIRE(tmp == 22);
 }
