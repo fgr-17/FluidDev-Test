@@ -4,6 +4,10 @@ set(LIB_DIR lib)
 set(FAKEIT_DIR FakeIt)
 set(CATCH2_DIR Catch2)
 
+include_directories(
+  ${CMAKE_SOURCE_DIR}/${LIB_DIR}/${FAKEIT_DIR}
+)
+  
 set(Sources 
   main_test.cpp
 )
