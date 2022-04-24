@@ -7,17 +7,18 @@ TEST_CASE("rc constructor", "[ring_counter]") {
   REQUIRE(rc.len() == 5);
 
   rc = 3;
-  REQUIRE(rc.get() == 3);
+  REQUIRE(rc == 3);
 
   rc++;
-  REQUIRE(rc.get() == 4);
+  REQUIRE(rc == 4);
 
   rc++;
-  REQUIRE(rc.get() == 0);
+  REQUIRE(rc == 0);
 
   rc--;
-  REQUIRE(rc.get() == 4);
+  REQUIRE(rc == 4);
 
   rc--;
-  REQUIRE(rc.get() == 3);
+  REQUIRE(rc == 3);
+  REQUIRE(rc + 1 == 4);
 }

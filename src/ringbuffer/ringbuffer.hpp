@@ -8,12 +8,10 @@ template <class T, unsigned int L>
 
 class ringbuffer {
  public:
-  explicit ringbuffer() : _rb(new T[L]), _len(L) {}
+  explicit ringbuffer() : _rb(new T[L]), _len(L), _head(L - 1), _tail(0) {}
   ~ringbuffer() {}
 
-  int init(void) { return 0; }
-
-  bool is_full(void) const { return true; }
+  bool is_full(void) const {}
 
   bool is_empty(void) const { return true; }
 

@@ -1,5 +1,7 @@
 class ringcounter {
+    
  public:
+ 
   explicit ringcounter(unsigned int len) : _c(0), _len(len) {}
   ~ringcounter() {}
 
@@ -18,12 +20,21 @@ class ringcounter {
   void operator=(int x) { set(x); }
 
   unsigned int get(void) const { return _c; }
-  void set(const unsigned int c) { _c = c % _len; }
+
+  unsigned int operator+(const unsigned int x) const {
+    return (get() + x) % _len;
+  }
+
+  bool operator==(const unsigned int& x) const { return is_equal(x); }
 
  private:
+
+  void set(const unsigned int c) { _c = c % _len; }
+
   void inc(void) { _c = (_c + 1) % _len; }
   void dec(void) { (_c == 0) ? (_c = _len - 1) : _c--; }
 
+  bool is_equal(const unsigned int& x) const { return (get() == x); }
   unsigned int _c;
   const unsigned int _len;
 };
