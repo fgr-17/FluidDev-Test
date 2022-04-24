@@ -23,3 +23,7 @@ mkdir -p ${OUTPUT_DIR}
 cd ${OUTPUT_DIR}
 cmake ../
 make
+
+echo -e '\nGenerating the docs ...'
+cd ${cwd}
+doxygen Doxyfile

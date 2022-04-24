@@ -75,6 +75,11 @@ cmake ..\
 
 ```
 
+The executable files can be found at:
+
+- app: build/src/fluid_dev
+- test suite: build/test/test_suite
+
 
 # Programming Test Detail:
 
