@@ -4,13 +4,14 @@
  * @author Federico Roux (rouxfederico@gmail.com)
  */
 
+#include <iostream>
 #include <memory>
 #include <mutex>
 #include <ringcounter.hpp>
 
 using namespace std;
 
-template <typename T, unsigned int L>
+template <typename T, int L>
 
 class ringbuffer {
  public:
@@ -18,7 +19,12 @@ class ringbuffer {
       : _rb(unique_ptr<T[]>(new T[L])), _len(L), _head(0), _tail(0) {}
   ~ringbuffer() {}
 
-  bool is_full(void) const { return (_tail == _head + 1); }
+  bool is_full(void) const {
+    cout << "tail: " << _tail.get() << endl;
+    cout << "head: " << _head.get() << endl;
+    cout << "head + 1: " << (_head + 1) << endl;
+    return (_tail == _head + 1);
+  }
 
   bool is_empty(void) const { return (_head == _tail); }
 
@@ -27,7 +33,7 @@ class ringbuffer {
 
     if (is_full()) return 1;
 
-    // _rb[_head++] = data;
+    _rb[_head++] = data;
     return 0;
   }
 
@@ -45,8 +51,8 @@ class ringbuffer {
   unique_ptr<T[]> _rb;
   mutex _m;
 
-  ringcounter _head{L};
-  ringcounter _tail{L};
+  ringcounter _head{5};
+  ringcounter _tail{5};
 
-  const unsigned int _len;
+  const unsigned int _len = L;
 };
