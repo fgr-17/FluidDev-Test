@@ -3,27 +3,36 @@
  * @brief class defined to control circular counter and its operators
  * @author Federico Roux (rouxfederico@gmail.com)
  */
-#include <iostream>
 
-using namespace std;
+#include <iostream>
 
 class ringcounter {
  public:
-  explicit ringcounter(unsigned int len) : _c(0), _len(len) {
-    cout << "_len: " << _len << endl;
-  }
+  ringcounter(unsigned int l) : _c(0), _len(l) {}
   ~ringcounter() {}
 
   unsigned int len(void) const { return _len; }
 
-  unsigned int operator++(int) {
+  unsigned int operator++() {
     inc();
     return get();
   }
 
-  unsigned int operator--(int) {
+  unsigned int operator++(int) {
+    auto tmp = get();
+    inc();
+    return tmp;
+  }
+
+  unsigned int operator--() {
     dec();
     return get();
+  }
+
+  unsigned int operator--(int) {
+    auto tmp = get();
+    dec();
+    return tmp;
   }
 
   void operator=(int x) { set(x); }
@@ -31,8 +40,6 @@ class ringcounter {
   unsigned int get(void) const { return _c; }
 
   unsigned int operator+(const unsigned int x) const {
-    // if (_len == 0) return 0;
-    cout << "operator+ len:" << _len << endl;
     return (get() + x) % _len;
   }
 
