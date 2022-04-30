@@ -14,16 +14,7 @@ using namespace std;
  *   @brief main program
  */
 
-int main(int argc, char *argv[]) {
-  ringbuffer<int, 5> rb{};
-
-  if (rb.is_empty()) cout << "Ringbuffer is empty" << endl;
-
-  if (!rb.is_full()) cout << "Ringbuffer is not full" << endl;
-
-  if (!rb.write(21)) cout << "Data written correctly" << endl;
-
+int main() {
   cout << "Hello Fluid-Dev!" << endl;
-
   return 0;
 }
