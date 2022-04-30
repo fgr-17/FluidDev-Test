@@ -80,23 +80,19 @@ The executable files can be found at:
 - app: build/src/fluid_dev
 - test suite: build/test/test_suite
 
-
-
-
 # Programming Test Detail:
 
 **Background:**
 
-You will be working closely with motors on an actuated robot. This challenge is a typical problem
-that will be encountered when working with this robot.
+You will be working closely with motors on an actuated robot. This challenge is a typical problem that will be encountered when working with this robot.
 
 **Problem:**
 
-You will read the joint position value from an encoder from one of the joints of the robot. The
-joint position will be given as a number between 0 to 4096, covering 360 degrees of rotation
+You will read the joint position value from an encoder from one of the joints of the robot. The joint position will be given as a number between 0 to 4096, covering 360 degrees of rotation
 
 1. Store that value in a ring buffer
-2. Provide functions for calculating the instantaneous
+2. Provide functions for calculating the instantaneous velocity and acceleration using the
+[finite difference method](https://en.wikipedia.org/wiki/Finite_difference_method).
 3. Write unit tests for all funcions
 
 **Requirements:**
