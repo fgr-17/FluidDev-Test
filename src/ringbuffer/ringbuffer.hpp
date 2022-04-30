@@ -20,6 +20,12 @@ class ringbuffer {
 
   bool is_empty(void) const { return (_head == _tail); }
 
+  T* begin() const { return &_rb[_tail.get()]; }
+
+  T* end() const { return &_rb[_head.get()]; }
+
+  T* operator++() { return &_rb[++_tail]; }
+
   int write(T data) {
     lock_guard<mutex> lock(_m);
 

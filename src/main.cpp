@@ -15,7 +15,6 @@ using namespace std;
  */
 
 int main() {
-
   cout << "Hello Fluid-Dev!" << endl;
   return 0;
 }
