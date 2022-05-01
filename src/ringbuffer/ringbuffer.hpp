@@ -44,6 +44,8 @@ class ringbuffer {
     return 0;
   }
 
+  unsigned int size(void) const { return L; }
+
  private:
   unique_ptr<T[]> _rb;
   mutex _m;

@@ -2,15 +2,17 @@
 #include <ringbuffer.hpp>
 
 #define DATA_TEST 22
+#define LEN_TEST 5
 
 TEST_CASE("rb sliding", "[ringbuffer]") {
-  ringbuffer<int, 5> rb{};
+  ringbuffer<int, LEN_TEST> rb{};
 
   int tmp;
 
   SECTION("Checking initialization:") {
     REQUIRE(rb.is_empty());
     REQUIRE(rb.is_full() == false);
+    REQUIRE(rb.size() == LEN_TEST);
   }
 
   SECTION("Read and writing:") {
@@ -39,7 +41,7 @@ TEST_CASE("rb sliding", "[ringbuffer]") {
 }
 
 TEST_CASE("rb iterator", "[ringbuffer]") {
-  ringbuffer<int, 5> rb{};
+  ringbuffer<int, LEN_TEST> rb{};
 
   int i = 0;
 
