@@ -22,20 +22,15 @@ TEST_CASE("rb sliding", "[ringbuffer]") {
   }
 
   SECTION("Filling and reading the entire buffer:") {
-    REQUIRE(rb.write(DATA_TEST + 1) == 0);
-    REQUIRE(rb.write(DATA_TEST + 2) == 0);
-    REQUIRE(rb.write(DATA_TEST + 3) == 0);
-    REQUIRE(rb.write(DATA_TEST + 4) == 0);
-    REQUIRE(rb.write(DATA_TEST + 5) != 0);  // ringbuffer should be full
+    for (auto i = 0; i < LEN_TEST; i++) {
+      REQUIRE(rb.write(DATA_TEST + i) == 0);
+    }
+    REQUIRE(rb.write(DATA_TEST + 6) != 0);  // ringbuffer should be full
 
-    REQUIRE(rb.read(tmp) == 0);
-    REQUIRE(tmp == DATA_TEST + 1);
-    REQUIRE(rb.read(tmp) == 0);
-    REQUIRE(tmp == DATA_TEST + 2);
-    REQUIRE(rb.read(tmp) == 0);
-    REQUIRE(tmp == DATA_TEST + 3);
-    REQUIRE(rb.read(tmp) == 0);
-    REQUIRE(tmp == DATA_TEST + 4);
+    for (auto i = 0; i < LEN_TEST; i++) {
+      REQUIRE(rb.read(tmp) == 0);
+      REQUIRE(tmp == DATA_TEST + i);
+    }
     REQUIRE(rb.read(tmp) != 0);  // ringbuffer should be empty
   }
 }

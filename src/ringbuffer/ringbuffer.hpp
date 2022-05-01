@@ -40,7 +40,7 @@ class ringbuffer {
 
     if (is_empty()) return 1;
 
-    data = _rb[_tail++];
+    data = _rb[++_tail];
     return 0;
   }
 
@@ -50,8 +50,8 @@ class ringbuffer {
   unique_ptr<T[]> _rb;
   mutex _m;
 
-  ringcounter _head;
-  ringcounter _tail;
+  ringcounter _head = 0;
+  ringcounter _tail = L;
 
   const unsigned int _len = L;
 };

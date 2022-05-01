@@ -25,13 +25,15 @@ int main() {
   ringbuffer<int, LEN_TEST> rb{};
 
   for (auto i = 0; i < LEN_TEST; i++) {
-    assert(!rb.write(DATA_TEST));
+    assert(!rb.write(DATA_TEST + i));
     cout << "i: " << i << endl;
   }
 
-  auto drb = fdm::diff(rb, 1);
+  for (auto rbi : rb) cout << "rbi:" << rbi << endl;
 
-  for (auto drbi : drb) cout << drbi << endl;
+  // auto drb = fdm::diff(rb, 1);
+
+  // for (auto drbi : drb) cout << drbi << endl;
 
   return 0;
 }
