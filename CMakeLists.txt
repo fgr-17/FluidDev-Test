@@ -15,6 +15,8 @@ set(SRC_DIR src)
 include_directories(
   ${CMAKE_SOURCE_DIR}/${SRC_DIR}/ringbuffer
   ${CMAKE_SOURCE_DIR}/${SRC_DIR}/fdm
+  ${CMAKE_SOURCE_DIR}/${SRC_DIR}/common
+  ${CMAKE_SOURCE_DIR}/${SRC_DIR}/encoder
 )
 
 

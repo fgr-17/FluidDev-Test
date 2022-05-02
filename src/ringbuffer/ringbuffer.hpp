@@ -4,6 +4,9 @@
  * @author Federico Roux (rouxfederico@gmail.com)
  */
 
+#ifndef __RINGBUFFER_HPP
+#define __RINGBUFFER_HPP
+
 #include <memory>
 #include <mutex>
 #include <ringcounter.hpp>
@@ -45,7 +48,7 @@ class ringbuffer {
     return 0;
   }
 
-  unsigned int size(void) const { return L; }
+  uint16_t size(void) const { return L; }
 
  private:
   unique_ptr<T[]> _rb;
@@ -54,7 +57,9 @@ class ringbuffer {
   ringcounter _head;
   ringcounter _tail;
 
-  unsigned int _q;
+  uint16_t _q;
 
-  const unsigned int _len = L + 1;
+  const uint16_t _len = L + 1;
 };
+
+#endif  // __RINGBUFFER_HPP
