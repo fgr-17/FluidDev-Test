@@ -22,14 +22,13 @@ using namespace std;
 int main() {
   cout << "Hello Fluid-Dev!" << endl;
 
-  ringbuffer<int, LEN_TEST> rb{};
+  // ringbuffer<int, LEN_TEST> rb{};
 
-  for (auto i = 0; i < LEN_TEST; i++) {
-    assert(!rb.write(DATA_TEST + i));
-    cout << "i: " << i << endl;
-  }
+  // for (auto i = 0; i < LEN_TEST; i++) {
+  //   assert(!rb.write(DATA_TEST + i));
+  // }
 
-  for (auto rbi : rb) cout << "rbi:" << rbi << endl;
+  // for (auto rbi : rb) cout << "rbi:" << rbi << endl;
 
   // auto drb = fdm::diff(rb, 1);
 

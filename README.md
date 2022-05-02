@@ -8,7 +8,7 @@
 
 This repo can be built and deployed inside a container based on Debian Jessie Slim
 
-### Build and deploy from docker command line:
+### a) Build and deploy from docker command line:
 
 - Open a terminal(Unix or macOS) or PowerShell in Windows and cd into the project folder
 
@@ -24,7 +24,7 @@ docker build -t fluid-dev -f .devcontainer/Dockerfile .
 docker run -it --rm --name=Fluid-Dev --mount type=bind,source=${PWD},target=/workspace fluid-dev bash
 ```
 
-### Build and deploy inside VSC devcontainer:
+### b) Build and deploy inside VSC devcontainer:
 
 The easiest way to set up the container is using the VSC Docker Extension as a [devcontainer](https://code.visualstudio.com/docs/remote/containers).
 
@@ -61,10 +61,35 @@ The easiest way to set up the container is using the VSC Docker Extension as a [
 
 - Usage: Open the current repository using the Dev Container VSC extension, chosing "Open Folder inside container" . The first time, it may take several minutes to build the container.
 
+## Test suite
+
+Unit test are based on Catch2 and FakeIt. These libs are added as submodules. Be sure to clone the repository using 
+
+```git
+git clone <URL> --recursive
+```
+
+Or once the repository was cloned, then run:
+
+```git
+git submodule update --init
+```
+
+Catch2 needs to be installed on the container. This can be easily done by executing:
+
+```bash
+cd scripts
+./install-catch2.sh
+```
 
 ## Building the sources:
 
-This project is based on cmake. In order to simplify the process, a script called <build-all.sh> is provided. It's a bash script, so it can be run inside the container, or on a Unix-macOS environment. This script will generate all the building files and the docs (based on doxygen).
+This project is based on cmake. In order to simplify the process, a script called <build-all.sh> is provided. It's a bash script, so it can be run inside the container, or on a Unix-macOS environment. This script will generate all the building files and the docs (based on doxygen). Just run:
+
+```bash
+cd scripts
+./build-all.sh
+```
 
 To compile natively on Windows, please open a cmd.exe or PowerShell terminal, cd into the project folder and run:
 

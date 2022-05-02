@@ -13,16 +13,17 @@ using namespace std;
 template <typename T, int L>
 class ringbuffer {
  public:
-  explicit ringbuffer() : _rb(unique_ptr<T[]>(new T[L])), _head(L), _tail(L) {}
+  explicit ringbuffer()
+      : _rb(unique_ptr<T[]>(new T[L + 1])), _head(L + 1, L), _tail(L + 1, 0) {}
   ~ringbuffer() {}
 
-  bool is_full(void) const { return (_tail == _head + 1); }
+  bool is_full(void) const { return (_tail == _head + 2); }
 
-  bool is_empty(void) const { return (_head == _tail); }
+  bool is_empty(void) const { return (_tail == _head + 1); }
 
-  T* begin() const { return &_rb[_tail.get()]; }
+  T* begin() const { return &_rb[_tail + 0]; }
 
-  T* end() const { return &_rb[_head.get()]; }
+  T* end() const { return &_rb[_head + 1]; }
 
   T* operator++() { return &_rb[++_tail]; }
 
@@ -31,7 +32,7 @@ class ringbuffer {
 
     if (is_full()) return 1;
 
-    _rb[_head++] = data;
+    _rb[++_head] = data;
     return 0;
   }
 
@@ -40,7 +41,7 @@ class ringbuffer {
 
     if (is_empty()) return 1;
 
-    data = _rb[++_tail];
+    data = _rb[_tail++];
     return 0;
   }
 
@@ -50,8 +51,10 @@ class ringbuffer {
   unique_ptr<T[]> _rb;
   mutex _m;
 
-  ringcounter _head = 0;
-  ringcounter _tail = L;
+  ringcounter _head;
+  ringcounter _tail;
 
-  const unsigned int _len = L;
+  unsigned int _q;
+
+  const unsigned int _len = L + 1;
 };

@@ -11,7 +11,7 @@ TEST_CASE("rb sliding", "[ringbuffer]") {
 
   SECTION("Checking initialization:") {
     REQUIRE(rb.is_empty());
-    REQUIRE(rb.is_full() == false);
+    REQUIRE(!rb.is_full());
     REQUIRE(rb.size() == LEN_TEST);
   }
 
@@ -19,13 +19,16 @@ TEST_CASE("rb sliding", "[ringbuffer]") {
     REQUIRE(rb.write(DATA_TEST) == 0);
     REQUIRE(rb.read(tmp) == 0);
     REQUIRE(tmp == DATA_TEST);
+    REQUIRE(rb.is_empty());
   }
 
-  SECTION("Filling and reading the entire buffer:") {
+  SECTION("Filling and reading back the entire buffer:") {
     for (auto i = 0; i < LEN_TEST; i++) {
+      INFO("i: " << i);
       REQUIRE(rb.write(DATA_TEST + i) == 0);
     }
     REQUIRE(rb.write(DATA_TEST + 6) != 0);  // ringbuffer should be full
+    REQUIRE(rb.is_full());
 
     for (auto i = 0; i < LEN_TEST; i++) {
       REQUIRE(rb.read(tmp) == 0);
@@ -38,15 +41,16 @@ TEST_CASE("rb sliding", "[ringbuffer]") {
 TEST_CASE("rb iterator", "[ringbuffer]") {
   ringbuffer<int, LEN_TEST> rb{};
 
+  for (auto i = 0; i < LEN_TEST; i++) {
+    INFO("i: " << i);
+    REQUIRE(rb.write(DATA_TEST + i) == 0);
+  }
+  REQUIRE(rb.write(DATA_TEST + 6) != 0);  // ringbuffer should be full
+  REQUIRE(rb.is_full());
+
   int i = 0;
-
-  REQUIRE(rb.write(DATA_TEST + 1) == 0);
-  REQUIRE(rb.write(DATA_TEST + 2) == 0);
-  REQUIRE(rb.write(DATA_TEST + 3) == 0);
-  REQUIRE(rb.write(DATA_TEST + 4) == 0);
-  REQUIRE(rb.write(DATA_TEST + 5) != 0);
-
   for (auto rbi : rb) {
-    REQUIRE(rbi == DATA_TEST + ++i);
+    INFO("i: " << i);
+    REQUIRE(rbi == (DATA_TEST + i++));
   }
 }
