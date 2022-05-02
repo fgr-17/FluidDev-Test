@@ -8,7 +8,7 @@
 
 class ringcounter {
  public:
-  explicit ringcounter(unsigned int l) : _c(0), _len(l) {}
+  explicit ringcounter(unsigned int l, unsigned int c = 0) : _c(c), _len(l) {}
   ~ringcounter() {}
 
   unsigned int len(void) const { return _len; }
