@@ -16,11 +16,11 @@ TEST_CASE("diff method - 1st order", "[fdm]") {
 
   auto drb = fdm::diff(rb, DT);
 
-  for (auto drbi : drb) REQUIRE(drbi == (1 / static_cast<float>(DT)));
+  for (auto drbi : *drb) REQUIRE(drbi == (1 / static_cast<float>(DT)));
 
-  auto ddrb = fdm::diff(drb, DT);
+  auto ddrb = fdm::diff(*drb, DT);
 
-  for (auto ddrbi : ddrb) REQUIRE(ddrbi == 0);
+  for (auto ddrbi : *ddrb) REQUIRE(ddrbi == 0);
 }
 
 TEST_CASE("diff method - 2nd order", "[fdm]") {
@@ -33,7 +33,7 @@ TEST_CASE("diff method - 2nd order", "[fdm]") {
 
   auto drb = fdm::diff(rb, DT);
 
-  auto ddrb = fdm::diff(drb, DT);
+  auto ddrb = fdm::diff(*drb, DT);
 
-  for (auto ddrbi : ddrb) REQUIRE(ddrbi == (1 / static_cast<float>(DT)));
+  for (auto ddrbi : *ddrb) REQUIRE(ddrbi == (1 / static_cast<float>(DT)));
 }

@@ -5,15 +5,31 @@
  */
 
 #include <cassert>
-#include <fdm.hpp>
+#include <encoder.hpp>
 #include <iostream>
-#include <ringbuffer.hpp>
-
-#define DATA_TEST 22
-#define LEN_TEST 5
 
 using namespace std;
 
+/** @brief global instance of encoder */
+encoder enc1{};
+
+/**
+ *   @fn adc_log
+ *   @brief main program
+ */
+
+int adc_log(void) {
+  enc1.log(3);
+  enc1.log(122);
+  enc1.log(493);
+  enc1.log(1022);
+  enc1.log(2033);
+  enc1.log(3001);
+  enc1.log(3900);
+  enc1.log(4095);
+
+  return 0;
+}
 /**
  *   @fn main
  *   @brief main program
@@ -22,17 +38,13 @@ using namespace std;
 int main() {
   cout << "Hello Fluid-Dev!" << endl;
 
-  // ringbuffer<int, LEN_TEST> rb{};
+  adc_log();
 
-  // for (auto i = 0; i < LEN_TEST; i++) {
-  //   assert(!rb.write(DATA_TEST + i));
-  // }
+  enc1.calc_velocity();
+  enc1.calc_acceleration();
 
-  // for (auto rbi : rb) cout << "rbi:" << rbi << endl;
-
-  // auto drb = fdm::diff(rb, 1);
-
-  // for (auto drbi : drb) cout << drbi << endl;
-
+  enc1.show_positions();
+  enc1.show_velocity();
+  enc1.show_acceleration();
   return 0;
 }

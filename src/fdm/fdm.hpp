@@ -4,6 +4,9 @@
  * @author Federico Roux (rouxfederico@gmail.com)
  */
 
+#ifndef __FDM_HPP
+#define __FDM_HPP
+
 #include <memory>
 #include <stdexcept>
 #include <vector>
@@ -16,12 +19,9 @@ namespace fdm {
  */
 
 template <class T>
-std::vector<float> diff(T& buf, float dx) {
+std::unique_ptr<std::vector<float>> diff(T& buf, float dx) {
   if (buf.size() < 2) throw std::length_error("buf length must be > 2");
   if (dx == 0) throw std::invalid_argument("dx cant be zero");
-
-  //   std::unique_ptr<std::vector<float>> dbuf(
-  //       new std::vector<float>[buf.size() - 1]);
 
   std::vector<float> dbuf;
 
@@ -38,6 +38,8 @@ std::vector<float> diff(T& buf, float dx) {
     e_1 = e;
   }
 
-  return dbuf;
+  return std::make_unique<std::vector<float>>(dbuf);
 }
 }  // namespace fdm
+
+#endif  // __FDM_HPP
